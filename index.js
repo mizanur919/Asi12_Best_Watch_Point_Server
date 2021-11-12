@@ -134,6 +134,10 @@ app.get('/', (req, res) => {
     res.send('I am from Node Server');
 });
 
+app.get('/test', (req, res) => {
+    res.send('test from heroku update test');
+})
+
 app.listen(port, () => {
     console.log('Listening Port ', port);
 })
