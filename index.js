@@ -25,6 +25,7 @@ async function run() {
         const productsCollection = database.collection('products');
         const orderCollection = database.collection('order');
         const reviewCollection = database.collection('reviews');
+        const usersCollection = database.collection('users');
 
 
         //////////////////////////////////////////////////
@@ -116,10 +117,24 @@ async function run() {
             res.json(result);
         })
 
+        ////////////////////////////////////////////////
+        //////// Review Collection APIs Ends ///////////
+        ////////////////////////////////////////////////
 
 
         ////////////////////////////////////////////////
-        //////// Review Collection APIs Ends ///////////
+        //////// Users Collection APIs Starts ///////////
+        ////////////////////////////////////////////////
+
+        app.post('/users', async (req, res) => {
+            const cursor = req.body;
+            const result = await usersCollection.insertOne(cursor);
+            res.json(result);
+        })
+
+
+        ////////////////////////////////////////////////
+        //////// Users Collection APIs Ends ///////////
         ////////////////////////////////////////////////
 
     }
