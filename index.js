@@ -48,6 +48,13 @@ async function run() {
             res.json(singleProduct);
         });
 
+        app.post('/product/add', async (req, res) => {
+            const product = req.body;
+            console.log(product);
+            const result = await productsCollection.insertOne(product);
+            res.json(result);
+        })
+
         //////////////////////////////////////////////////
         //////// Products Collection APIs Ends ////////////
         //////////////////////////////////////////////////
