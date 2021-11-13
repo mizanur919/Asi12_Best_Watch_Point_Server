@@ -92,7 +92,16 @@ async function run() {
             const query = { _id: ObjectId(id) };
             const result = await orderCollection.deleteOne(query);
             res.json(result);
-        })
+        });
+
+        app.put('/order/status/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const updateDoc = { $set: { status: 'confirm' } };
+            const result = await orderCollection.updateOne(query, updateDoc);
+            console.log(result);
+            res.json(result);
+        });
 
         ////////////////////////////////////////////////
         //////// Order Collection APIs Ends ////////////
@@ -183,10 +192,6 @@ run().catch(console.dir);
 app.get('/', (req, res) => {
     res.send('I am from Node Server');
 });
-
-app.get('/test', (req, res) => {
-    res.send('test from heroku update test');
-})
 
 app.listen(port, () => {
     console.log('Listening Port ', port);
